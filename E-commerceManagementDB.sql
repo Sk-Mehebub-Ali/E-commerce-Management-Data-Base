@@ -1,9 +1,21 @@
+   /* 
+   CREATE DATABASE
+   */
+
 CREATE DATABASE EcommerceERP;
+GO
+
 USE EcommerceERP;
+GO
+
+
+  /* 
+   1. CUSTOMERS
+  */
 
 CREATE TABLE Customers
 (
-    CustomerID INT AUTO_INCREMENT PRIMARY KEY,
+    CustomerID INT IDENTITY(1,1) PRIMARY KEY,
 
     CustomerName VARCHAR(100) NOT NULL,
 
@@ -13,36 +25,45 @@ CREATE TABLE Customers
 
     City VARCHAR(50),
 
-    CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CreatedAt DATETIME DEFAULT GETDATE(),
 
-    IsActive BOOLEAN DEFAULT TRUE
+    IsActive BIT DEFAULT 1
 );
+GO
 
 
 INSERT INTO Customers
 (CustomerName, Email, Phone, City, IsActive)
 VALUES
-('Amit Sharma', 'amit@gmail.com', '9876543210', 'Kolkata', TRUE),
-('Rahul Das', 'rahul@gmail.com', '9876543211', 'Howrah', TRUE),
-('Priya Singh', 'priya@gmail.com', '9876543212', 'Durgapur', TRUE),
-('Arjun Roy', 'arjun@gmail.com', '9876543213', 'Siliguri', TRUE),
-('Sneha Gupta', 'sneha@gmail.com', '9876543214', 'Kolkata', TRUE),
-('Rohan Mehta', 'rohan@gmail.com', '9876543215', 'Delhi', TRUE),
-('Ananya Sen', 'ananya@gmail.com', '9876543216', 'Kolkata', TRUE),
-('Vikash Kumar', 'vikash@gmail.com', '9876543217', 'Patna', TRUE),
-('Neha Agarwal', 'neha@gmail.com', '9876543218', 'Ranchi', TRUE),
-('Sourav Ghosh', 'sourav@gmail.com', '9876543219', 'Kolkata', TRUE);
+('Amit Sharma', 'amit@gmail.com', '9876543210', 'Kolkata', 1),
+('Rahul Das', 'rahul@gmail.com', '9876543211', 'Howrah', 1),
+('Priya Singh', 'priya@gmail.com', '9876543212', 'Durgapur', 1),
+('Arjun Roy', 'arjun@gmail.com', '9876543213', 'Siliguri', 1),
+('Sneha Gupta', 'sneha@gmail.com', '9876543214', 'Kolkata', 1),
+('Rohan Mehta', 'rohan@gmail.com', '9876543215', 'Delhi', 1),
+('Ananya Sen', 'ananya@gmail.com', '9876543216', 'Kolkata', 1),
+('Vikash Kumar', 'vikash@gmail.com', '9876543217', 'Patna', 1),
+('Neha Agarwal', 'neha@gmail.com', '9876543218', 'Ranchi', 1),
+('Sourav Ghosh', 'sourav@gmail.com', '9876543219', 'Kolkata', 1);
+GO
 
 SELECT * FROM Customers;
+GO
+
+
+    /* 
+   2. CATEGORIES
+    */
 
 CREATE TABLE Categories
 (
-    CategoryID INT AUTO_INCREMENT PRIMARY KEY,
+    CategoryID INT IDENTITY(1,1) PRIMARY KEY,
 
     CategoryName VARCHAR(100) NOT NULL UNIQUE,
 
     Description VARCHAR(250)
 );
+GO
 
 
 INSERT INTO Categories
@@ -58,11 +79,16 @@ VALUES
 ('Gaming', 'Gaming products'),
 ('Printers', 'Printers and scanners'),
 ('Smart Watches', 'Wearable smart watches');
+GO
 
+
+  /* 
+   3. SUPPLIERS
+ */
 
 CREATE TABLE Suppliers
 (
-    SupplierID INT AUTO_INCREMENT PRIMARY KEY,
+    SupplierID INT IDENTITY(1,1) PRIMARY KEY,
 
     SupplierName VARCHAR(150) NOT NULL,
 
@@ -72,33 +98,41 @@ CREATE TABLE Suppliers
 
     City VARCHAR(50),
 
-    IsActive BOOLEAN DEFAULT TRUE
+    IsActive BIT DEFAULT 1
 );
+GO
 
 
 INSERT INTO Suppliers
 (SupplierName, Email, Phone, City, IsActive)
 VALUES
-('Tech World Pvt Ltd', 'techworld@gmail.com', '9000000001', 'Kolkata', TRUE),
-('Digital India Suppliers', 'digitalindia@gmail.com', '9000000002', 'Delhi', TRUE),
-('Smart Electronics', 'smart@gmail.com', '9000000003', 'Mumbai', TRUE),
-('Global Gadgets', 'global@gmail.com', '9000000004', 'Bangalore', TRUE),
-('Prime Computers', 'prime@gmail.com', '9000000005', 'Hyderabad', TRUE),
-('NextGen Electronics', 'nextgen@gmail.com', '9000000006', 'Chennai', TRUE),
-('Electro Hub', 'electrohub@gmail.com', '9000000007', 'Pune', TRUE),
-('Future Tech', 'futuretech@gmail.com', '9000000008', 'Kolkata', TRUE),
-('Galaxy Distributors', 'galaxy@gmail.com', '9000000009', 'Ahmedabad', TRUE),
-('Digital Zone', 'digitalzone@gmail.com', '9000000010', 'Jaipur', TRUE);
+('Tech World Pvt Ltd', 'techworld@gmail.com', '9000000001', 'Kolkata', 1),
+('Digital India Suppliers', 'digitalindia@gmail.com', '9000000002', 'Delhi', 1),
+('Smart Electronics', 'smart@gmail.com', '9000000003', 'Mumbai', 1),
+('Global Gadgets', 'global@gmail.com', '9000000004', 'Bangalore', 1),
+('Prime Computers', 'prime@gmail.com', '9000000005', 'Hyderabad', 1),
+('NextGen Electronics', 'nextgen@gmail.com', '9000000006', 'Chennai', 1),
+('Electro Hub', 'electrohub@gmail.com', '9000000007', 'Pune', 1),
+('Future Tech', 'futuretech@gmail.com', '9000000008', 'Kolkata', 1),
+('Galaxy Distributors', 'galaxy@gmail.com', '9000000009', 'Ahmedabad', 1),
+('Digital Zone', 'digitalzone@gmail.com', '9000000010', 'Jaipur', 1);
+GO
 
+
+  /* 
+   4. WAREHOUSES
+ */
 
 CREATE TABLE Warehouses
 (
-    WarehouseID INT AUTO_INCREMENT PRIMARY KEY,
+    WarehouseID INT IDENTITY(1,1) PRIMARY KEY,
 
     WarehouseName VARCHAR(100) NOT NULL,
 
     Location VARCHAR(150) NOT NULL
 );
+GO
+
 
 INSERT INTO Warehouses
 (WarehouseName, Location)
@@ -113,10 +147,16 @@ VALUES
 ('Pune Warehouse', 'Pune'),
 ('Patna Warehouse', 'Patna'),
 ('Siliguri Warehouse', 'Siliguri');
+GO
+
+
+  /* 
+   5. PRODUCTS
+ */
 
 CREATE TABLE Products
 (
-    ProductID INT AUTO_INCREMENT PRIMARY KEY,
+    ProductID INT IDENTITY(1,1) PRIMARY KEY,
 
     SKU VARCHAR(50) NOT NULL UNIQUE,
 
@@ -132,7 +172,7 @@ CREATE TABLE Products
 
     ReorderLevel INT NOT NULL DEFAULT 10,
 
-    IsActive BOOLEAN DEFAULT TRUE,
+    IsActive BIT DEFAULT 1,
 
     CONSTRAINT FK_Product_Category
         FOREIGN KEY (CategoryID)
@@ -148,6 +188,7 @@ CREATE TABLE Products
     CONSTRAINT CK_Product_CostPrice
         CHECK (CostPrice >= 0)
 );
+GO
 
 
 INSERT INTO Products
@@ -163,11 +204,16 @@ VALUES
 ('HEAD001', 'Sony Headphones', 5, 8, 12000, 9500, 10),
 ('TV001', 'LG 55 Inch Smart TV', 6, 9, 65000, 55000, 5),
 ('WATCH001', 'Apple Watch Series 9', 10, 10, 45000, 38000, 5);
+GO
 
+
+  /* 
+   6. INVENTORY
+  */
 
 CREATE TABLE Inventory
 (
-    InventoryID INT AUTO_INCREMENT PRIMARY KEY,
+    InventoryID INT IDENTITY(1,1) PRIMARY KEY,
 
     ProductID INT NOT NULL,
 
@@ -175,7 +221,7 @@ CREATE TABLE Inventory
 
     Quantity INT NOT NULL DEFAULT 0,
 
-    LastUpdated DATETIME DEFAULT CURRENT_TIMESTAMP,
+    LastUpdated DATETIME DEFAULT GETDATE(),
 
     CONSTRAINT FK_Inventory_Product
         FOREIGN KEY (ProductID)
@@ -191,6 +237,7 @@ CREATE TABLE Inventory
     CONSTRAINT UQ_Product_Warehouse
         UNIQUE(ProductID, WarehouseID)
 );
+GO
 
 
 INSERT INTO Inventory
@@ -206,10 +253,16 @@ VALUES
 (8, 7, 6),
 (9, 8, 4),
 (10, 9, 20);
+GO
+
+
+/* 
+   7. ORDERS
+    */
 
 CREATE TABLE Orders
 (
-    OrderID INT AUTO_INCREMENT PRIMARY KEY,
+    OrderID INT IDENTITY(1,1) PRIMARY KEY,
 
     CustomerID INT NOT NULL,
 
@@ -226,6 +279,7 @@ CREATE TABLE Orders
     CONSTRAINT CK_Order_Total
         CHECK (TotalAmount >= 0)
 );
+GO
 
 
 INSERT INTO Orders
@@ -241,11 +295,16 @@ VALUES
 (8, '2026-08-18', 'Delivered', 65800),
 (9, '2026-08-20', 'Processing', 13500),
 (10, '2026-08-25', 'Delivered', 58000);
+GO
 
+
+  /* 
+   8. ORDER ITEMS
+ */
 
 CREATE TABLE OrderItems
 (
-    OrderItemID INT AUTO_INCREMENT PRIMARY KEY,
+    OrderItemID INT IDENTITY(1,1) PRIMARY KEY,
 
     OrderID INT NOT NULL,
 
@@ -271,6 +330,8 @@ CREATE TABLE OrderItems
     CONSTRAINT CK_OrderItem_Price
         CHECK (UnitPrice >= 0)
 );
+GO
+
 
 INSERT INTO OrderItems
 (OrderID, ProductID, Quantity, UnitPrice, Discount)
@@ -285,11 +346,16 @@ VALUES
 (6, 1, 1, 55000, 0),
 (6, 7, 1, 900, 0),
 (7, 10, 1, 45000, 0);
+GO
 
+
+   /* 
+   9. PAYMENTS
+    */
 
 CREATE TABLE Payments
 (
-    PaymentID INT AUTO_INCREMENT PRIMARY KEY,
+    PaymentID INT IDENTITY(1,1) PRIMARY KEY,
 
     OrderID INT NOT NULL,
 
@@ -299,7 +365,7 @@ CREATE TABLE Payments
 
     PaymentStatus VARCHAR(30) NOT NULL,
 
-    PaymentDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    PaymentDate DATETIME DEFAULT GETDATE(),
 
     TransactionReference VARCHAR(100),
 
@@ -310,6 +376,8 @@ CREATE TABLE Payments
     CONSTRAINT CK_Payment_Amount
         CHECK (Amount > 0)
 );
+GO
+
 
 INSERT INTO Payments
 (OrderID, Amount, PaymentMethod, PaymentStatus, TransactionReference)
@@ -324,10 +392,16 @@ VALUES
 (8, 65800, 'UPI', 'Completed', 'TXN10008'),
 (9, 13500, 'Cash', 'Pending', 'TXN10009'),
 (10, 58000, 'UPI', 'Completed', 'TXN10010');
+GO
+
+
+   /* 
+   10. SHIPMENTS
+  */
 
 CREATE TABLE Shipments
 (
-    ShipmentID INT AUTO_INCREMENT PRIMARY KEY,
+    ShipmentID INT IDENTITY(1,1) PRIMARY KEY,
 
     OrderID INT NOT NULL UNIQUE,
 
@@ -345,6 +419,8 @@ CREATE TABLE Shipments
         FOREIGN KEY (OrderID)
         REFERENCES Orders(OrderID)
 );
+GO
+
 
 INSERT INTO Shipments
 (OrderID, CourierName, TrackingNumber, ShipmentStatus, ShippedDate, DeliveredDate)
@@ -359,6 +435,12 @@ VALUES
 (8, 'Delhivery', 'DL10008', 'Delivered', '2026-08-19', '2026-08-21'),
 (9, 'BlueDart', 'BD10009', 'Processing', NULL, NULL),
 (10, 'DTDC', 'DT10010', 'Delivered', '2026-08-26', '2026-08-28');
+GO
+
+
+  /* 
+   11. JOIN QUERIES
+  */
 
 SELECT
     p.ProductID,
@@ -368,8 +450,9 @@ SELECT
 FROM Products p
 INNER JOIN Categories c
     ON p.CategoryID = c.CategoryID;
-    
-    
+GO
+
+
 SELECT
     p.ProductName,
     p.Price,
@@ -378,8 +461,9 @@ SELECT
 FROM Products p
 INNER JOIN Suppliers s
     ON p.SupplierID = s.SupplierID;
-    
-    
+GO
+
+
 SELECT
     p.ProductName,
     i.Quantity,
@@ -388,6 +472,8 @@ FROM Products p
 INNER JOIN Inventory i
     ON p.ProductID = i.ProductID
 WHERE i.Quantity <= p.ReorderLevel;
+GO
+
 
 SELECT
     c.CustomerName,
@@ -399,10 +485,18 @@ FROM Customers c
 INNER JOIN Orders o
     ON c.CustomerID = o.CustomerID
 ORDER BY o.TotalAmount DESC;
+GO
+
+
+   /*
+   12. AGGREGATE QUERIES
+   */
 
 SELECT
     SUM(TotalAmount) AS TotalRevenue
 FROM Orders;
+GO
+
 
 SELECT
     c.CustomerName,
@@ -413,6 +507,8 @@ INNER JOIN Orders o
     ON c.CustomerID = o.CustomerID
 GROUP BY c.CustomerName
 ORDER BY TotalSpent DESC;
+GO
+
 
 SELECT
     c.CustomerName,
@@ -423,16 +519,27 @@ INNER JOIN Orders o
 GROUP BY c.CustomerName
 HAVING SUM(o.TotalAmount) > 50000
 ORDER BY TotalSpent DESC;
+GO
 
-SELECT
+
+   /* 
+   13. TOP 5 PRODUCTS
+   */
+
+SELECT TOP 5
     p.ProductName,
     SUM(oi.Quantity) AS UnitsSold
 FROM Products p
 INNER JOIN OrderItems oi
     ON p.ProductID = oi.ProductID
 GROUP BY p.ProductName
-ORDER BY UnitsSold DESC
-LIMIT 5;
+ORDER BY UnitsSold DESC;
+GO
+
+
+   /* 
+   14. SECOND HIGHEST PRICE
+    */
 
 SELECT
     MAX(Price) AS SecondHighestPrice
@@ -442,7 +549,12 @@ WHERE Price <
     SELECT MAX(Price)
     FROM Products
 );
+GO
 
+
+   /* 
+   15. CTE + DENSE_RANK
+   */
 
 WITH ProductSales AS
 (
@@ -465,9 +577,15 @@ SELECT
         ORDER BY Revenue DESC
     ) AS SalesRank
 FROM ProductSales;
+GO
 
 
-CREATE VIEW vw_ProductInventory AS
+/* 
+   16. VIEW
+   */
+
+CREATE VIEW vw_ProductInventory
+AS
 SELECT
     p.ProductID,
     p.ProductName,
@@ -483,16 +601,21 @@ INNER JOIN Inventory i
     ON p.ProductID = i.ProductID
 INNER JOIN Warehouses w
     ON i.WarehouseID = w.WarehouseID;
-    
-    
+GO
+
+
 SELECT *
 FROM vw_ProductInventory;
+GO
 
 
+/* 
+   17. STORED PROCEDURE
+   */
 
-CREATE PROCEDURE GetCustomerOrders(
-    IN p_CustomerID INT
-)
+CREATE PROCEDURE GetCustomerOrders
+    @CustomerID INT
+AS
 BEGIN
 
     SELECT
@@ -501,18 +624,28 @@ BEGIN
         o.OrderStatus,
         o.TotalAmount
     FROM Orders o
-    WHERE o.CustomerID = p_CustomerID
+    WHERE o.CustomerID = @CustomerID
     ORDER BY o.OrderDate DESC;
 
-END 
+END;
+GO
 
-DELIMITER ;
+
+/* Execute procedure */
+EXEC GetCustomerOrders @CustomerID = 1;
+GO
 
 
-START TRANSACTION;
+/* 
+   18. TRANSACTION
+    */
+
+BEGIN TRANSACTION;
 
 UPDATE Inventory
-SET Quantity = Quantity - 1
+SET
+    Quantity = Quantity - 1,
+    LastUpdated = GETDATE()
 WHERE ProductID = 1
 AND WarehouseID = 1;
 
@@ -520,4 +653,5 @@ UPDATE Orders
 SET OrderStatus = 'Confirmed'
 WHERE OrderID = 1;
 
-COMMIT;
+COMMIT TRANSACTION;
+GO
